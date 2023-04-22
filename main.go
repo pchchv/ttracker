@@ -12,3 +12,10 @@ type Day struct {
 	weekend bool
 	holiday bool
 }
+
+type Calendar struct {
+	Year   int16
+	Months []Month
+}
+
+func main() {}
