@@ -18,4 +18,18 @@ type Calendar struct {
 	Months []Month
 }
 
+func newMonth(num int) (m Month) {
+	// TODO
+	return
+}
+
+func newCalendar(year int) (c Calendar) {
+	c.Year = int16(year)
+	for i := 1; i <= 12; i++ {
+		m := newMonth(i)
+		c.Months = append(c.Months, m)
+	}
+	return
+}
+
 func main() {}
