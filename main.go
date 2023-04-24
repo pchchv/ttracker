@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"os"
+	"strconv"
 
 	"github.com/pchchv/env"
 	"github.com/pchchv/golog"
@@ -70,6 +72,21 @@ func newWorker(name string, dept string, year Calendar) (w Worker) {
 	w.PersonalCalendar = year
 
 	return
+}
+
+func createPerson(jsonMap map[string]interface{}) Worker {
+	name := fmt.Sprint(jsonMap["Name"])
+	department := fmt.Sprint(jsonMap["Department"])
+	year, err := strconv.Atoi(fmt.Sprint(jsonMap["Year"]))
+	if err != nil {
+		golog.Panic(err.Error())
+	}
+
+	// TODO: Implement the receipt of the calendar.
+	// Creating a new one is a bad idea.
+	calendar := newCalendar(year)
+
+	return newWorker(name, department, calendar)
 }
 
 func main() {
