@@ -55,4 +55,6 @@ func newCalendar(year int) (c Calendar) {
 	return
 }
 
-func main() {}
+func main() {
+	server()
+}
