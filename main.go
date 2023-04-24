@@ -26,6 +26,12 @@ type Calendar struct {
 	Months []Month
 }
 
+type Worker struct {
+	Name             string
+	Department       string
+	PersonalCalendar Calendar
+}
+
 var testURL string
 
 func init() {
