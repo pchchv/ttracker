@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -24,6 +25,16 @@ func createCalendarHandler(c echo.Context) error {
 	calendar := newCalendar(year)
 
 	return c.JSON(http.StatusOK, calendar)
+}
+
+func createPersonHandler(c echo.Context) error {
+	var jsonMap map[string]interface{}
+	if err := c.Bind(&jsonMap); err != nil {
+		return c.String(http.StatusBadRequest, fmt.Sprintf("Some input error: %e", err))
+	}
+
+	person := createPerson(jsonMap)
+	return c.JSON(http.StatusOK, person)
 }
 
 // The declaration of all routes comes from it.
