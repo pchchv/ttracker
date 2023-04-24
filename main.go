@@ -18,6 +18,7 @@ type Day struct {
 	date    int16
 	weekend bool
 	holiday bool
+	workday bool
 }
 
 type Calendar struct {
