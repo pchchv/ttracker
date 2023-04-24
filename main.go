@@ -64,6 +64,14 @@ func newCalendar(year int) (c Calendar) {
 	return
 }
 
+func newWorker(name string, dept string, year Calendar) (w Worker) {
+	w.Name = name
+	w.Department = dept
+	w.PersonalCalendar = year
+
+	return
+}
+
 func main() {
 	server()
 }
