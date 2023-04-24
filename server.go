@@ -8,13 +8,13 @@ import (
 	"github.com/pchchv/golog"
 )
 
-// Checks that the server is up and running
+// Checks that the server is up and running.
 func pingHandler(c echo.Context) error {
 	message := "Time tracking service. Version 0.0.1"
 	return c.String(http.StatusOK, message)
 }
 
-// The declaration of all routes comes from it
+// The declaration of all routes comes from it.
 func routes(e *echo.Echo) {
 	e.GET("/", pingHandler)
 	e.GET("/ping", pingHandler)
