@@ -14,11 +14,11 @@ type Month struct {
 }
 
 type Day struct {
-	title   string
-	date    int16
-	weekend bool
-	holiday bool
-	workday bool
+	Title   string
+	Date    int16
+	Weekend bool
+	Holiday bool
+	Workday bool
 }
 
 type Calendar struct {
