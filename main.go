@@ -46,11 +46,6 @@ func getEnvValue(v string) string {
 	return value
 }
 
-func newMonth(num int) (m Month) {
-	// TODO
-	return
-}
-
 func newCalendar(year int) (c Calendar) {
 	c.Year = int16(year)
 	for i := 1; i <= 12; i++ {
