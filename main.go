@@ -19,7 +19,7 @@ type Day struct {
 
 type Calendar struct {
 	Year int16
-	Days []Day // TODO: Leap Year Check
+	Days []Day
 }
 
 type Worker struct {
@@ -46,15 +46,27 @@ func getEnvValue(v string) string {
 	return value
 }
 
-func newCalendar(year int) (c Calendar) {
+func newCalendar(year int, leap bool) (c Calendar) {
 	c.Year = int16(year)
-	c.Days = newYear()
+	c.Days = newYear(leap)
 
 	return
 }
 
-func newYear() []Day {
+func newYear(leap bool) []Day {
 	var days []Day
+	var numDays int
+
+	if leap {
+		numDays = 366
+	} else {
+		numDays = 365
+	}
+
+	for i := 1; i <= numDays; i++ {
+		// TODO: newDay func
+	}
+
 	return days
 }
 
@@ -76,7 +88,7 @@ func createPerson(jsonMap map[string]interface{}) Worker {
 
 	// TODO: Implement the receipt of the calendar.
 	// Creating a new one is a bad idea.
-	calendar := newCalendar(year)
+	calendar := newCalendar(year, false)
 
 	return newWorker(name, department, calendar)
 }
