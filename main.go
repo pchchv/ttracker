@@ -19,7 +19,7 @@ type Day struct {
 
 type Calendar struct {
 	Year int16
-	Days []Day
+	Days []Day // TODO: Leap Year Check
 }
 
 type Worker struct {
@@ -48,11 +48,14 @@ func getEnvValue(v string) string {
 
 func newCalendar(year int) (c Calendar) {
 	c.Year = int16(year)
-	for i := 1; i <= 12; i++ {
-		m := newMonth(i)
-		c.Months = append(c.Months, m)
-	}
+	c.Days = newYear()
+
 	return
+}
+
+func newYear() []Day {
+	var days []Day
+	return days
 }
 
 func newWorker(name string, dept string, year Calendar) (w Worker) {
