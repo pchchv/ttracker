@@ -70,10 +70,15 @@ func newYear(leap bool) []Day {
 	}
 
 	for i := 1; i <= numDays; i++ {
-		// TODO: newDay func
+		days = append(days, newDay())
 	}
 
 	return days
+}
+
+func newDay() (d Day) {
+	// TODO
+	return
 }
 
 func newWorker(name string, dept string, year Calendar) (w Worker) {
