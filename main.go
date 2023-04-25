@@ -9,14 +9,8 @@ import (
 	"github.com/pchchv/golog"
 )
 
-type Month struct {
-	Title        string
-	NumberOfDays int16
-	Days         []Day
-}
-
 type Day struct {
-	Title   string
+	Month   string
 	Date    int16
 	Weekend bool
 	Holiday bool
@@ -24,8 +18,8 @@ type Day struct {
 }
 
 type Calendar struct {
-	Year   int16
-	Months []Month
+	Year int16
+	Days []Day
 }
 
 type Worker struct {
