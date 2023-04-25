@@ -46,9 +46,15 @@ func getEnvValue(v string) string {
 	return value
 }
 
-func newCalendar(year int, leap bool) (c Calendar) {
+func newCalendar(jsonMap map[string]interface{}) (c Calendar, err error) {
+	_ = fmt.Sprint(jsonMap["Leap"]) // TODO: Convert to bool
+	year, err := strconv.Atoi(fmt.Sprint(jsonMap["Year"]))
+	if err != nil {
+		return
+	}
+
 	c.Year = int16(year)
-	c.Days = newYear(leap)
+	c.Days = newYear(true) // leap
 
 	return
 }
