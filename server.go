@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -17,12 +16,15 @@ func pingHandler(c echo.Context) error {
 }
 
 func createCalendarHandler(c echo.Context) error {
-	year, err := strconv.Atoi(c.QueryParam("year"))
-	if err != nil {
-		return c.String(http.StatusBadRequest, "Error when parsing the year")
+	var jsonMap map[string]interface{}
+	if err := c.Bind(&jsonMap); err != nil {
+		return c.String(http.StatusBadRequest, fmt.Sprintf("Some input error: %e", err))
 	}
 
-	calendar := newCalendar(year)
+	calendar, err := newCalendar(jsonMap)
+	if err != nil {
+		return c.String(http.StatusBadRequest, fmt.Sprintf("Some input error: %e", err))
+	}
 
 	return c.JSON(http.StatusOK, calendar)
 }
