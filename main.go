@@ -81,14 +81,10 @@ func newWorker(name string, dept string, year Calendar) (w Worker) {
 func createPerson(jsonMap map[string]interface{}) Worker {
 	name := fmt.Sprint(jsonMap["Name"])
 	department := fmt.Sprint(jsonMap["Department"])
-	year, err := strconv.Atoi(fmt.Sprint(jsonMap["Year"]))
-	if err != nil {
-		golog.Panic(err.Error())
-	}
 
 	// TODO: Implement the receipt of the calendar.
 	// Creating a new one is a bad idea.
-	calendar := newCalendar(year, false)
+	calendar := Calendar{}
 
 	return newWorker(name, department, calendar)
 }
