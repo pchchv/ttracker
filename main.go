@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/pchchv/env"
 	"github.com/pchchv/golog"
+	"github.com/rickar/cal/v2"
 )
 
 var testURL string
@@ -23,6 +25,14 @@ func getEnvValue(v string) string {
 		golog.Panic("Value %v does not exist", v)
 	}
 	return value
+}
+
+func newCalendar(year int) *cal.BusinessCalendar {
+	c := cal.NewBusinessCalendar()
+	c.Name = fmt.Sprintf("%v year", year)
+	c.Description = "Default calendar"
+
+	return c
 }
 
 func main() {
