@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -12,6 +13,18 @@ import (
 func pingHandler(c echo.Context) error {
 	message := "Time tracking service. Version 0.0.1"
 	return c.String(http.StatusOK, message)
+}
+
+// Creates new business calendar.
+func createCalendarHandler(c echo.Context) error {
+	year, err := strconv.Atoi(c.QueryParam("year"))
+	if err != nil {
+		return c.String(http.StatusBadRequest, "Error when parsing the year")
+	}
+
+	calendar := newCalendar(year)
+
+	return c.JSON(http.StatusOK, calendar)
 }
 
 // The declaration of all routes comes from it.
